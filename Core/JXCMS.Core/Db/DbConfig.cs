@@ -38,6 +38,6 @@
         /// <summary>
         /// 表前缀
         /// </summary>
-        public string prefix { get; set; }
+        public string Prefix { get; set; }
     }
 }
