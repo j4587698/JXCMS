@@ -1,0 +1,270 @@
+﻿@{
+  ViewData["Title"] = "JXCMS安装程序";
+}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <title>JXCMS安装程序</title>
+  <link rel="icon" href="favicon.ico" type="image/ico">
+  <meta name="keywords" content="JXCMS,JXCMS安装">
+  <meta name="description" content="JXCMS是一个CMS简易模板。">
+  <link href="@Url.ContentAdmin("css/bootstrap.min.css")" rel="stylesheet">
+  <link href="@Url.ContentAdmin("css/materialdesignicons.min.css")" rel="stylesheet">
+  <link href="@Url.ContentAdmin("css/style.min.css")" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <h1 align="center">JXCMS安装程序</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-offset-2 col-lg-8">
+      <div class="card">
+        <div class="card-body">
+          <form id="wizardForm" action="@Url.Action("Finish")" method="post" class="guide-box" data-navigateable="true">
+            <ul class="nav-step step-dots">
+              <li class="nav-step-item active">
+                <span>阅读协议</span>
+                <a class="active" data-toggle="tab" href="#step-1"></a>
+              </li>
+
+              <li class="nav-step-item">
+                <span>配置安装信息</span>
+                <a data-toggle="tab" href="#step-2"></a>
+              </li>
+
+              <li class="nav-step-item">
+                <span>完成配置</span>
+                <a data-toggle="tab" href="#step-3"></a>
+              </li>
+            </ul>
+            <br/>
+            <!--对应内容-->
+            <div class="nav-step-content">
+              <div class="nav-step-pane hidden active" id="step-1">
+                <div class="card-header">
+                  <h4>协议内容</h4>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <textarea class="form-control" id="example-textarea-input" name="example-textarea-input" placeholder="内容.." style="height: 50vh"></textarea>
+                    <br/>
+                    <label class="lyear-checkbox">
+                      <input type="checkbox" id="agreement" name="agreement">
+                      <span id="tip" data-container="body" data-toggle="popover" data-placement="top" data-content="请点击同意协议">同意协议</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="nav-step-pane hidden" id="step-2">
+                <div class="card-header">
+                  <h4>配置数据库</h4>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>数据库类型</label>
+                    <select class="form-control" id="dbType" name="dbType" size="1">
+                      <option value="MySql">MySql</option>
+                      <option value="Oracle">Oracle</option>
+                      <option value="MSSQL">SQL Server</option>
+                      <option value="Sqlite">Sqlite</option>
+                      <option value="Postgresql">Postgresql</option>
+                    </select>
+                    <div class="help-block">输入更多信息</div>
+                  </div>
+                  <div id="hostArea" class="form-group">
+                    <label>主机名</label>
+                    <input id="hostName" name="hostName" class="form-control" type="text" value="localhost">
+                    <div class="help-block">输入更多信息</div>
+                  </div>
+                  <div id="portArea" class="form-group">
+                    <label>端口</label>
+                    <input id="port" name="port" class="form-control" type="text" value="3306">
+                    <div class="help-block">输入更多信息</div>
+                  </div>
+                  <div id="dbUserArea" class="form-group">
+                    <label>用户名</label>
+                    <input id="dbUser" name="dbUser" class="form-control" type="text">
+                    <div class="help-block">输入更多信息</div>
+                  </div>
+                  <div id="dbPassArea" class="form-group">
+                    <label>密码</label>
+                    <input id="dbPass" name="dbPass" class="form-control" type="text">
+                    <div class="help-block">输入更多信息</div>
+                  </div>
+                  <div class="form-group">
+                    <label>数据库名称</label>
+                    <input id="dbName" name="dbName" class="form-control" type="text">
+                  </div>
+                  <div class="form-group">
+                    <label>数据表前缀</label>
+                    <input id="prefix" name="prefix" class="form-control" type="text" value="JX_">
+                  </div>
+                </div>
+                <div class="card-header">
+                  <h4>配置管理员</h4>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>用户名</label>
+                    <input id="adminUser" name="adminUser" class="form-control" type="text">
+                    <div class="help-block">输入更多信息</div>
+                  </div>
+                  <div class="form-group">
+                    <label>密码</label>
+                    <input id="adminPass" name="adminPass" class="form-control" type="text">
+                    <div class="help-block">输入更多信息</div>
+                  </div>
+                  <div class="form-group">
+                    <label>确认密码</label>
+                    <input id="adminRepass" name="adminRepass" class="form-control" type="text">
+                    <div class="help-block">输入更多信息</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="nav-step-pane hidden" id="step-3">
+                恭喜你，所有配置已经完成，请点击按钮开始安装吧
+              </div>
+            </div>
+            <!--End 对应内容-->
+            <hr>
+            <div class="nav-step-button">
+              <button class="btn btn-secondary disabled" data-wizard="prev" type="button">上一步</button>
+              <button class="btn btn-secondary" data-wizard="next" type="button">下一步</button>
+              <button class="btn btn-primary hidden" data-wizard="finish" type="submit">开始安装</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="@Url.ContentAdmin("js/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.ContentAdmin("js/bootstrap.min.js")"></script>
+<script type="text/javascript" src="@Url.ContentAdmin("js/jquery.validate.min.js")"></script>
+<!--向导插件-->
+<script type="text/javascript" src="@Url.ContentAdmin("js/jquery.bootstrap.wizard.min.js")"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#dbType').change(function() {
+    var dbType = $('#dbType').val();
+    var dbPort = $('#port');
+    var hostArea = $('#hostArea');
+    var dbPortArea = $('#portArea');
+    var dbUserArea = $('#dbUserArea');
+    var dbPassArea = $('#dbPassArea');
+    if (dbType === 'Sqlite') {
+      hostArea.hide();
+      dbPortArea.hide();
+      dbUserArea.hide();
+      dbPassArea.hide();
+    } else {
+      hostArea.show();
+      dbPortArea.show();
+      dbUserArea.show();
+      dbPassArea.show();
+    }
+    switch(dbType) {
+      case "MySql":
+        dbPort.val('3306');
+        break;
+       case "Oracle":
+         dbPort.val('1521');
+         break;
+       case "MSSQL" :
+         dbPort.val('1433');
+         break;
+       case "Postgresql":
+         dbPort.val('5432');
+         break;
+       default:
+         dbPort.val('');
+    }
+  });
+  var $validator = $("#wizardForm").validate({
+  		  rules: {
+  		    hostName: "required",
+  		    port: "digits",
+  		    dbName: "required",
+  		    adminUser: {
+  		      required: true,
+  		      minlength: 5
+  		    },
+  		    adminPass: {
+  		      required: true,
+  		      minlength: 5
+  		    },
+  		    adminRepass: {
+  		      equalTo: "#adminPass"
+  		    }
+  		  },
+  		  messages: {
+  		    hostName: "主机名必须输入",
+  		    port: "端口号必须为数字",
+  		    dbName: "数据库名称不能为空",
+  		    adminUser: {
+  		      required: "管理员用户名必须输入",
+  		      minlength: "管理员用户名必须大于5个字符"
+  		    },
+  		    adminPass: {
+  		      required: "管理员密码必须输入",
+  		      minlength: "管理员密码必须大于5个字符"
+  		    },
+  		    adminRepass: {
+  		      equalTo: "两次输入密码不相同"
+  		    }
+  		  }
+  		});
+    $('.guide-box').bootstrapWizard({
+        'tabClass': 'nav-step',
+        'nextSelector': '[data-wizard="next"]',
+        'previousSelector': '[data-wizard="prev"]',
+        'finishSelector': '[data-wizard="finish"]',
+        'onTabClick': function(e, t, i) {
+            return false
+        },
+        'onNext': function(e, t, i) {
+          if (i === 1){
+            if (!$('#agreement').is(':checked')) {
+              $('#tip').popover('show');
+              return false
+            }
+          } else if (i === 2){
+            if(!$("#wizardForm").valid()) {
+              $validator.focusInvalid();
+              return false;
+            }
+            var ret = false;
+            $.ajax({url: "@Url.Action("CheckInstallInfo")", type: "post", async: false, data: $('#wizardForm').serialize(), success: function(json) {
+              if (json.ret) {
+                ret = true;
+              } else {
+                alert(json.msg);
+              }
+            }, error: function() {
+              alert("服务器连接失败");
+             }, 
+             dataType: "json"});
+          }
+          return ret;
+        },
+        'onTabShow': function(e, t, i) {
+            t.children(":gt(" + i + ").complete").removeClass("complete");
+            t.children(":lt(" + i + "):not(.complete)").addClass("complete");
+        },
+        'onFinish': function(e, t, i) {
+            // 点击完成后处理提交
+            
+        }
+    });
+});
+</script>
+</body>
+</html>
