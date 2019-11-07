@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using JXCMS.CMS.Models;
+using JXCMS.Core.Themes;
 
 namespace JXCMS.CMS.Controllers
 {
@@ -25,6 +26,7 @@ namespace JXCMS.CMS.Controllers
 
         public IActionResult Privacy()
         {
+            
             return View();
         }
 

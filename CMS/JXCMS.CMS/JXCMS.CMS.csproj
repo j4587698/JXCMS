@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Admin\Content" />
+    <Folder Include="Views\Default" />
   </ItemGroup>
 
 </Project>

@@ -12,9 +12,9 @@ namespace JXCMS.CMS.Admin.Controllers
         // GET
         public IActionResult Index()
         {
-            if (System.IO.File.Exists(""))
+            if (System.IO.File.Exists("install.lock"))
             {
-                
+                return RedirectToAction("Index", "Home", new {area = ""});
             }
             return View();
         }

@@ -8,6 +8,7 @@ using JXCMS.CMS.Entity;
 using JXCMS.Core;
 using JXCMS.Core.Auth;
 using JXCMS.Core.Db;
+using JXCMS.Core.Themes;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,7 +40,12 @@ namespace JXCMS.CMS
                 options.AreaViewLocationFormats.Add("/{2}/Views/{1}/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/{2}/Views/Shared/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+                options.ViewLocationExpanders.Add(new TemplateViewLocationExpander());
             });
+            
+            TemplateViewLocationExpander.PcThemeName = "Default";
+            TemplateViewLocationExpander.MobileThemeName = "Mobile";
+            TemplateViewLocationExpander.Mode = ThemeChangeMode.Auto;
 
             services.AddDb(Configuration);
             
@@ -71,6 +77,13 @@ namespace JXCMS.CMS
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "Admin")),
                 RequestPath = "/Admin"
+            });
+            
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "Views")),
+                RequestPath = "/theme"
             });
             
             app.UseJXCMS("/Admin/Install");
