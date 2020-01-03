@@ -24,11 +24,14 @@ namespace JXCMS.CMS
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
+        public IHostEnvironment Environment { get; }
+        
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -42,17 +45,15 @@ namespace JXCMS.CMS
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
                 options.ViewLocationExpanders.Add(new TemplateViewLocationExpander());
             });
-            
-            TemplateViewLocationExpander.PcThemeName = "Default";
-            TemplateViewLocationExpander.MobileThemeName = "Mobile";
-            TemplateViewLocationExpander.Mode = ThemeChangeMode.Auto;
 
-            services.AddDb(Configuration);
+            services.AddDb(Configuration, Environment.IsDevelopment());
             
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             
             services.AddJXAuth();
-            
+
+            services.AddCms();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

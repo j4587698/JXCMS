@@ -20,17 +20,17 @@ namespace JXCMS.Core.Db
             builder.ConfigureServices((context, collection) =>
             {
                 var dbSettings = context.Configuration.GetSection("Db").Get<DbConfig>();
-                SetDb(dbSettings);
+                SetDb(dbSettings, context.HostingEnvironment.IsDevelopment());
             });
             return builder;
         }
 
-        public static IServiceCollection AddDb(this IServiceCollection service, IConfiguration configuration)
+        public static IServiceCollection AddDb(this IServiceCollection service, IConfiguration configuration, bool isDevVersion)
         {
             var dbSettings = configuration.GetSection("Db").Get<DbConfig>();
             if (dbSettings != null)
             {
-                var ret = SetDb(dbSettings);
+                var ret = SetDb(dbSettings, isDevVersion);
                 if (!ret.isSuccess)
                 {
                     throw new CMSException(ret.msg);
@@ -43,7 +43,7 @@ namespace JXCMS.Core.Db
             return service;
         }
 
-        public static (bool isSuccess, string msg) SetDb(DbConfig dbConfig)
+        public static (bool isSuccess, string msg) SetDb(DbConfig dbConfig, bool isDevVersion)
         {
             if (!dbConfig.DbType.IsNullOrEmpty() && Enum.TryParse(dbConfig.DbType, true, out DataType dataType))
             {
@@ -52,7 +52,7 @@ namespace JXCMS.Core.Db
                     case DataType.MySql:
                         var connStr = $"data source={dbConfig.DbName};PORT={dbConfig.DbPort};database={dbConfig.DbName}; uid={dbConfig.Username};pwd={dbConfig.Password};";
                         BaseEntity.Initialization(new FreeSqlBuilder()
-                            .UseAutoSyncStructure(false)
+                            .UseAutoSyncStructure(isDevVersion)
                             .UseNoneCommandParameter(true)
                             .UseConnectionString(dataType, connStr)
                             .Build());
@@ -65,7 +65,7 @@ namespace JXCMS.Core.Db
                         break;
                     case DataType.Sqlite:
                         BaseEntity.Initialization(new FreeSqlBuilder()
-                            .UseAutoSyncStructure(false)
+                            .UseAutoSyncStructure(isDevVersion)
                             .UseNoneCommandParameter(true)
                             .UseConnectionString(dataType, $"data source={dbConfig.DbName}")
                             .Build());

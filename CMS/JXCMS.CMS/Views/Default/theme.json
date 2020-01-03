@@ -1,4 +1,5 @@
 {
 ThemeName: "Default",
-ScreenShot: "screenshot.jpg"
+ScreenShot: "screenshot.jpg",
+ThemeType: 1 
 }

@@ -19,6 +19,7 @@ namespace JXCMS.CMS.Admin.Controllers
         // GET
         public IActionResult Index()
         {
+            ViewBag.title = "首页";
             return View();
         }
 

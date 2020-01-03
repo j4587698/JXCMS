@@ -21,7 +21,7 @@ namespace JXCMS.CMS.Admin.Controllers
 
         public JsonResult CheckInstallInfo(InstallModel installModel)
         {
-            var ret = DbExtension.SetDb(installModel.ToDbConfig());
+            var ret = DbExtension.SetDb(installModel.ToDbConfig(), true);
             return new JsonResult(new {ret = ret.isSuccess, msg = ret.msg});
         }
 

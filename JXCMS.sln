@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXCMS.Core", "Core\JXCMS.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXCMS.CMS", "CMS\JXCMS.CMS\JXCMS.CMS.csproj", "{13963598-B0A8-4F53-9FA4-57F471B0DEAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JXCMSFramework", "Core\JXCMSFramework\JXCMSFramework.csproj", "{3975BBCC-F3DC-4B00-A904-BEFD70F3D5FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{13963598-B0A8-4F53-9FA4-57F471B0DEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13963598-B0A8-4F53-9FA4-57F471B0DEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13963598-B0A8-4F53-9FA4-57F471B0DEAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3975BBCC-F3DC-4B00-A904-BEFD70F3D5FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3975BBCC-F3DC-4B00-A904-BEFD70F3D5FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3975BBCC-F3DC-4B00-A904-BEFD70F3D5FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3975BBCC-F3DC-4B00-A904-BEFD70F3D5FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{070AAAA9-246D-49FC-99BB-87EDCD86C480} = {72F64098-F0E3-405A-8A25-118EE8F8BA05}
 		{13963598-B0A8-4F53-9FA4-57F471B0DEAE} = {4093A133-5C79-4399-A776-B7D42EFA6405}
+		{3975BBCC-F3DC-4B00-A904-BEFD70F3D5FE} = {72F64098-F0E3-405A-8A25-118EE8F8BA05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17990EFC-E89A-4211-AC00-0FEF8DCEB0D7}

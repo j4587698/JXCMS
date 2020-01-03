@@ -837,10 +837,10 @@ if (typeof jQuery === "undefined") {
                 menu.css('top', y).css('left', x).css('position', 'fixed').show();
               
                 
-                $(this).parents().on('mouseup', function () {
+                $(this).parents().on('click', function () {
                     menu.hide();
                 });
-                $('#iframe-content').find('iframe').contents().find('body').on('mouseup', function () {
+                $('#iframe-content').find('iframe').contents().find('body').on('click', function () {
                     menu.hide();
                 });
             });

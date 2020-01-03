@@ -136,7 +136,7 @@
             <hr>
             <div class="nav-step-button">
               <button class="btn btn-secondary disabled" data-wizard="prev" type="button">上一步</button>
-              <button class="btn btn-secondary" data-wizard="next" type="button">下一步</button>
+              <button class="btn btn-secondary" data-wizard="next" type="button" data-loading-text="校验中..." id="nextStep">下一步</button>
               <button class="btn btn-primary hidden" data-wizard="finish" type="submit">开始安装</button>
             </div>
           </form>
@@ -235,25 +235,32 @@ $(document).ready(function() {
             if (!$('#agreement').is(':checked')) {
               $('#tip').popover('show');
               return false
+            }else{
+              $('#tip').popover('hide');
             }
           } else if (i === 2){
             if(!$("#wizardForm").valid()) {
               $validator.focusInvalid();
               return false;
             }
-            var ret = false;
-            $.ajax({url: "@Url.Action("CheckInstallInfo")", type: "post", async: false, data: $('#wizardForm').serialize(), success: function(json) {
+            var btn = $('#nextStep');
+            btn.button('loading');
+            $.ajax({url: "@Url.Action("CheckInstallInfo")", type: "post", data: $('#wizardForm').serialize(), success: function(json) {
               if (json.ret) {
-                ret = true;
+                $('.guide-box').bootstrapWizard('show', 2)
               } else {
                 alert(json.msg);
               }
             }, error: function() {
               alert("服务器连接失败");
              }, 
+             complete: function(){
+              btn.button('reset');
+             },
              dataType: "json"});
+            return false;
           }
-          return ret;
+          return true;
         },
         'onTabShow': function(e, t, i) {
             t.children(":gt(" + i + ").complete").removeClass("complete");

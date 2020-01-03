@@ -22,6 +22,6 @@ namespace JXCMS.CMS
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                }).ConfigFreeDb();
+                });
     }
 }
