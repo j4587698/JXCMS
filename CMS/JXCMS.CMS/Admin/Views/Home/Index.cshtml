@@ -34,6 +34,15 @@
           <ul class="nav nav-drawer">
             <li class="nav-item active"> <a class="multitabs" href="@Url.Action("Home")"><i class="mdi mdi-home"></i> <span>后台首页</span></a> </li>
             <li class="nav-item nav-item-has-subnav">
+                          <a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> <span>文章</span></a>
+                          <ul class="nav nav-subnav">
+                            <li> <a class="multitabs" href="@Url.Action("Index", "Article")">所有文章</a> </li>
+                            <li> <a class="multitabs" href="lyear_forms_radio.html">写文章</a> </li>
+                            <li> <a class="multitabs" href="lyear_forms_checkbox.html">分类目录</a> </li>
+                            <li> <a class="multitabs" href="lyear_forms_switch.html">标签</a> </li>
+                          </ul>
+                        </li>
+            <li class="nav-item nav-item-has-subnav">
               <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> <span>外观</span></a>
               <ul class="nav nav-subnav">
                 <li> <a class="multitabs" href="@Url.Action("Index", "Theme")">主题</a> </li>
