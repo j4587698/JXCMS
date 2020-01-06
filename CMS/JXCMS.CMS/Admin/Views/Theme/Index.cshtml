@@ -79,32 +79,39 @@
 {
   <script src="@Url.ContentAdmin("js/jconfirm/jquery-confirm.min.js")"></script>
   <script>
-    function selectTheme(themeName, themeType) {
-      $.alert({
-        title: '切换主题',
-        content: '是否使用' + themeName + "主题？",
-        buttons: {
-          confirm: {
-            text: '是',
-            btnClass: 'btn-primary',
-            action: function() {
-              $.ajax({url: '@Url.Action("ChangeTheme")', type: 'post', data: {themeName: themeName, themeType: themeType},
-                success: function(result,status) {
-                  if (result.code === 200){
-                    window.location.reload()
-                  }else {
-                    $.alert(result.msg)
-                  }
-                }, error: function(xhr,status,error) {
-                  
-                }})
-            }
-          },
-          cancel: {
-            text: '否'
+      function getThemeName(themeType) {
+          if (themeType === 2) {
+              return '手机版主题'
           }
-        }
-      })
-    }
+          return '电脑版主题'
+      }
+
+      function selectTheme(themeName, themeType) {
+          $.alert({
+              title: '切换主题',
+              content: '是否将' + getThemeName(themeType) + '主题切换为' + themeName + "？",
+              buttons: {
+                  confirm: {
+                      text: '是',
+                      btnClass: 'btn-primary',
+                      action: function() {
+                          $.ajax({url: '@Url.Action("ChangeTheme")', type: 'post', data: {themeName: themeName, themeType: themeType},
+                              success: function(result,status) {
+                                  if (result.code === 200){
+                                      window.location.reload()
+                                  }else {
+                                      $.alert(result.msg)
+                                  }
+                              }, error: function(xhr,status,error) {
+                  
+                              }})
+                      }
+                  },
+                  cancel: {
+                      text: '否'
+                  }
+              }
+          })
+      }
   </script>
 }
