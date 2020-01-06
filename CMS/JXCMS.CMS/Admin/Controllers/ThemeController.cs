@@ -22,7 +22,7 @@ namespace JXCMS.CMS.Admin.Controllers
             {
                 TemplateViewLocationExpander.MobileThemeName = themeName;
                 var settingsEntity = SettingsEntity.Where(x => x.Name == ThemeUtil.MobileThemeName).First() ??
-                                     new SettingsEntity {Name = ThemeUtil.MobileThemeName};
+                                     new SettingsEntity {Name = ThemeUtil.MobileThemeName, Type = "Theme"};
                 settingsEntity.Value = themeName;
                 settingsEntity.Save();
             }
@@ -30,7 +30,7 @@ namespace JXCMS.CMS.Admin.Controllers
             {
                 TemplateViewLocationExpander.PcThemeName = themeName;
                 var settingsEntity = SettingsEntity.Where(x => x.Name == ThemeUtil.PcThemeName).First() ??
-                                     new SettingsEntity {Name = ThemeUtil.PcThemeName};
+                                     new SettingsEntity {Name = ThemeUtil.PcThemeName, Type = "Theme"};
                 settingsEntity.Value = themeName;
                 settingsEntity.Save();
             }
