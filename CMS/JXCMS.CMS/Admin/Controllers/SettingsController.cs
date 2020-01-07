@@ -15,5 +15,11 @@ namespace JXCMS.CMS.Admin.Controllers
             ViewBag.settings = SettingsEntity.Where(x => x.Type == "Settings").ToList();
             return View();
         }
+
+        public IActionResult System()
+        {
+            ViewBag.settings = SettingsEntity.Where(x => x.Type == "System").ToList();
+            return View();
+        }
     }
 }
