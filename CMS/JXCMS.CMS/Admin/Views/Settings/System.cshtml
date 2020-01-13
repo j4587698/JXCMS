@@ -22,50 +22,13 @@
                         <form action="#!" method="post" name="edit-form" class="edit-form">
                             <div class="form-group">
                                 <label for="theme_type">主题类型</label>
-                                <div class="col-xs-12">
-                                    <select id="theme_type" class="form-control" name="theme_type" size="1">
-                                        <option value="0">请选择</option>
-                                        <option value="1">选项 #1</option>
-                                        <option value="2">选项 #2</option>
-                                        <option value="3">选项 #3</option>
+                                <select id="theme_type" class="form-control" name="theme_type" size="1">
+                                        <option value="0">只有PC版</option>
+                                        <option value="1">自适应</option>
+                                        <option value="2">域名切换</option>
+                                        <option value="3">自动切换</option>
                                     </select>
-                                </div>
                                 <small class="help-block">调用方式：<code>config('web_site_title')</code></small>
-                            </div>
-                            <div class="form-group">
-                                <label for="web_site_logo">LOGO图片</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="web_site_logo" id="web_site_logo" value="@(settings.First(x => x.Name == "logo").Value)" />
-                                    <div class="input-group-btn"><button class="btn btn-default" type="button">上传图片</button></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="web_site_keywords">站点关键词</label>
-                                <input class="form-control" type="text" id="web_site_keywords" name="web_site_keywords" value="@(settings.First(x => x.Name == "keyword").Value)" placeholder="请输入站点关键词">
-                                <small class="help-block">网站搜索引擎关键字</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="web_site_description">站点描述</label>
-                                <textarea class="form-control" id="web_site_description" rows="5" name="web_site_description" placeholder="请输入站点描述">@(settings.First(x => x.Name == "description").Value)</textarea>
-                                <small class="help-block">网站描述，有利于搜索引擎抓取相关信息</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="web_site_copyright">版权信息</label>
-                                <input class="form-control" type="text" id="web_site_copyright" name="web_site_copyright" value="@(settings.First(x => x.Name == "copyright").Value)" placeholder="请输入版权信息">
-                                <small class="help-block">调用方式：<code>config('web_site_copyright')</code></small>
-                            </div>
-                            <div class="form-group">
-                                <label for="web_site_icp">备案信息</label>
-                                <input class="form-control" type="text" id="web_site_icp" name="web_site_icp" value="@(settings.First(x => x.Name == "icp").Value)" placeholder="请输入备案信息">
-                                <small class="help-block">调用方式：<code>config('web_site_icp')</code></small>
-                            </div>
-                            <div class="form-group">
-                                <label class="btn-block" for="web_site_status">站点开关</label>
-                                <label class="lyear-switch switch-solid switch-primary">
-                                    <input type="checkbox" checked="">
-                                    <span></span>
-                                </label>
-                                <small class="help-block">站点关闭后将不能访问，后台可正常登录</small>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary m-r-5">确 定</button>
